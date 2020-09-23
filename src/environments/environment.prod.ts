@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  APIUrl: 'http://api.dev.steadylearn.com',
 };

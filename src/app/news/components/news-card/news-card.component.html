@@ -1,0 +1,47 @@
+<nz-card nzBordered="false">
+    <div *ngIf="permissionsHelper.hasPermissions(this.permissions,[permission.Admin, permission.NewsManager])" options>
+        <i nz-icon nzType="ellipsis" nzTheme="outline" [matMenuTriggerFor]="menu"></i>
+    </div>
+    <p formatted>{{ formattedMessage }}</p>
+    <div *ngIf="!isFullMessageShown" more-button>
+      <a (click)="showFullMessage()" nz-button flex-button nzType="link">
+        <span>More</span>
+        <i nz-icon nzType="arrow-down" nzTheme="outline"></i>
+      </a>
+    </div>
+    <div attachments-container>
+      <div attachment *ngFor="let attachment of news.attachments">
+            <div flex file>
+              <img file-image [src]="this.stringTools.getIconUrlByFilename(attachment.name)">
+              <div file-name>
+                <nz-spin [nzSpinning]="attachment.isDownloading" [nzIndicator]="indicatorTemplate">
+                  <div>{{ attachment.name }}</div>
+                </nz-spin>
+              </div>
+            </div>
+            <i download-file-icon (click)="downloadFile(attachment.id, attachment.name)" nz-icon nzType="download" nzTheme="outline"></i>
+      </div>
+    </div>
+    <div card-metadata>
+        <span>{{ news.createdBy }}</span>
+        <span>{{ news.createdOn | date: 'longDate' }}</span>
+    </div>
+</nz-card>
+
+<ng-template loading-overlay #indicatorTemplate>
+  <i loading-overlay-icon nz-icon nzType="loading"></i>
+  <span>Downloading</span>
+</ng-template>
+
+<mat-menu #menu="matMenu">
+    <ul nz-menu tile-action-menu>
+      <li nz-menu-item (click)="onEditClick()">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+        <span>Edit</span>
+      </li>
+      <li delete-menu-item nz-menu-item (click)="onDeleteClick()">
+        <i nz-icon nzType="delete" nzTheme="outline"></i>
+        <span>Delete</span>
+      </li>
+    </ul>
+</mat-menu>

@@ -1,0 +1,53 @@
+[actions] {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+[dd-box] {
+    width: 75px;
+}
+
+[dd-label] {
+    color: #c7c7c7;
+    margin: 10px;
+}
+
+[files-upload-option-divider] {
+    color: #c7c7c7;
+    margin: 0 15px;
+}
+
+[nz-list-item] {
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+[nz-list-item] img {
+    width: 35px;
+    margin-right: 10px;
+}
+
+[browse-files-button] {
+    color: #c7c7c7;
+}
+
+[browse-files-button]:hover {
+    color: #40a9ff;
+}
+
+[attachment-row] {
+    width: 100%;
+}
+
+[loading-overlay-icon] {
+    margin-right: 10px;
+}
+
+[remove-attachments] {
+    font-size: 15px;
+    cursor: pointer;
+}

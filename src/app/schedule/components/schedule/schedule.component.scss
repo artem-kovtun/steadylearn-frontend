@@ -1,0 +1,122 @@
+
+[time-column] {
+  width: 10%;
+  text-align: center;
+  background-color: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+[day-column] {
+  width: 15%;
+  text-align: center;
+  background-color: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+td{
+  text-align: center;
+}
+
+[schedule-header] {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+ [schedule-title] {
+     display: flex;
+     align-items: center;
+     font-size: 20px;
+     cursor: pointer;
+ }
+
+ [schedule-title] nz-tag {
+     margin-top: 1px;
+     font-size: 15px;
+     margin-left: 10px;
+ }
+
+ [schedule-name-input] {
+     width: 200px;
+ }
+
+ [schedule-actions] button {
+     margin-left: 10px;
+ }
+
+ [add-schedule-button] i,
+ [add-row-button-icon]{
+     margin-top: 3px;
+     margin-left: 0;
+     font-size: 15px;
+ }
+
+[collapse-icon] {
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+[mobile-schedule] {
+  display: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: 1px solid #efefef;
+}
+
+[schedule-day] {
+  padding-top: 15px;
+  padding-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+[mobile-schedule-list] {
+  width: 100%;
+}
+
+[day-name] {
+  font-size: 13px;
+}
+
+[mobile-schedule-row] {
+  display: flex;
+  width: 100%;
+  min-height: 73px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 0;
+}
+
+[mobile-schedule-row] [time] {
+  color: silver;
+  font-size: 12px;
+}
+
+[mobile-schedule-row] [subject] {
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+[mobile-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 0;
+}
+
+[mobile-header] [name] {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 950px) {
+  [schedule] {
+    display: none;
+  }
+
+  [mobile-schedule] {
+    display: block;
+  }
+}

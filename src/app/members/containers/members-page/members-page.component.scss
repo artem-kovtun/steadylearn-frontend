@@ -1,0 +1,31 @@
+:host {
+  width: 100%;
+}
+
+[breadcrumb] {
+  display: none;
+  margin-bottom: 5px;
+}
+
+[members-list] {
+  display: block;
+  width: 100%;
+  max-height: calc(calc(var(--vh, 1vh)) - 136px);
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 950px) {
+  [breadcrumb] {
+    display: block;
+  }
+
+  [members-list] {
+    margin-top: 10px;
+  }
+
+  [nz-list] {
+    height: calc(calc(var(--vh, 1vh)) - 163px);
+  }
+}

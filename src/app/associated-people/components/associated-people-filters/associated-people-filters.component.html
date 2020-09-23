@@ -1,0 +1,32 @@
+<div dialog-filters>
+
+    <div flex-column filters-section>
+        <span no-select>Status:</span>
+        <nz-radio-group [(ngModel)]="statusString" nzButtonStyle="solid">
+            <label nz-radio-button nzValue="1" no-select>All</label>
+            <label nz-radio-button nzValue="2" no-select>Active</label>
+            <label nz-radio-button nzValue="3" no-select>Inactive</label>
+        </nz-radio-group>
+    </div>
+
+    <div flex-column filters-section>
+        <span no-select>Order By:</span>
+        <nz-radio-group [(ngModel)]="orderByString" nzButtonStyle="solid">
+            <label nz-radio-button nzValue="1" no-select>Name</label>
+            <label nz-radio-button nzValue="2" no-select>Creation Date</label>
+        </nz-radio-group>
+    </div>
+
+    <div flex-column filters-section>
+        <span no-select>Sort order:</span>
+        <nz-radio-group [(ngModel)]="sortOrderString" nzButtonStyle="solid">
+            <label nz-radio-button nzValue="1" no-select><i nz-icon nzType="arrow-up" nzTheme="outline"></i> Ascending</label>
+            <label nz-radio-button nzValue="2" no-select>Descending <i nz-icon nzType="arrow-down" nzTheme="outline"></i></label>
+        </nz-radio-group>
+    </div>
+
+    <div actions>
+        <button (click)="onCancelClick()" nz-button nzType="primary" nzDanger><i nz-icon nzType="close" nzTheme="outline"></i>Cancel</button>
+        <button (click)="onApplyClick()" nz-button nzType="primary"><i nz-icon nzType="check" nzTheme="outline"></i>Ok</button>
+    </div>
+</div>

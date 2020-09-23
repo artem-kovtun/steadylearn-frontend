@@ -1,0 +1,54 @@
+<div calendar-container>
+    <div calendar-header>
+      <nz-radio-group month-selector [(ngModel)]="monthValue" nzButtonStyle="solid" (ngModelChange)="monthChange()">
+        <label nz-radio-button nzValue="0">January</label>
+        <label nz-radio-button nzValue="1">February</label>
+        <label nz-radio-button nzValue="2">March</label>
+        <label nz-radio-button nzValue="3">April</label>
+        <label nz-radio-button nzValue="4">May</label>
+        <label nz-radio-button nzValue="5">June</label>
+        <label nz-radio-button nzValue="6">July</label>
+        <label nz-radio-button nzValue="7">August</label>
+        <label nz-radio-button nzValue="8">September</label>
+        <label nz-radio-button nzValue="9">October</label>
+        <label nz-radio-button nzValue="10">November</label>
+        <label nz-radio-button nzValue="11">December</label>
+      </nz-radio-group>
+      <nz-select month-selector-mini [(ngModel)]="monthValue" (ngModelChange)="monthChange()">
+        <nz-option nzValue="0" nzLabel="January"></nz-option>
+        <nz-option nzValue="1" nzLabel="February"></nz-option>
+        <nz-option nzValue="2" nzLabel="March"></nz-option>
+        <nz-option nzValue="3" nzLabel="April"></nz-option>
+        <nz-option nzValue="4" nzLabel="May"></nz-option>
+        <nz-option nzValue="5" nzLabel="June"></nz-option>
+        <nz-option nzValue="6" nzLabel="July"></nz-option>
+        <nz-option nzValue="7" nzLabel="August"></nz-option>
+        <nz-option nzValue="8" nzLabel="September"></nz-option>
+        <nz-option nzValue="9" nzLabel="October"></nz-option>
+        <nz-option nzValue="10" nzLabel="November"></nz-option>
+        <nz-option nzValue="11" nzLabel="December"></nz-option>
+      </nz-select>
+      <nz-select [(ngModel)]="yearValue" (ngModelChange)="yearChange()">
+        <nz-option nzValue="2020" nzLabel="2020"></nz-option>
+        <nz-option nzValue="2021" nzLabel="2021"></nz-option>
+        <nz-option nzValue="2022" nzLabel="2022"></nz-option>
+        <nz-option nzValue="2023" nzLabel="2023"></nz-option>
+        <nz-option nzValue="2024" nzLabel="2024"></nz-option>
+        <nz-option nzValue="2025" nzLabel="2025"></nz-option>
+      </nz-select>
+    </div>
+    <nz-calendar [(ngModel)]="date" [(nzMode)]="mode" (nzSelectChange)="dateChange()">
+      <div *nzDateCell="let calendarDate" date-cell>
+        <ng-container *ngFor="let dateWithEvents of calendarMetadata">
+          <ng-container [ngSwitch]="yyyymmddDate(calendarDate)">
+            <ng-container *ngSwitchCase="yyyymmddDate(dateWithEvents.date)">
+              <nz-badge *ngIf="dateWithEvents.high != 0" [nzColor]="'#f75c5c'"></nz-badge>
+              <nz-badge *ngIf="dateWithEvents.medium != 0" [nzColor]="'#2776e6'"></nz-badge>
+              <nz-badge *ngIf="dateWithEvents.low != 0" [nzColor]="'#dbdbdb'"></nz-badge>
+              <span>{{getEventMetadataLabel(dateWithEvents.high + dateWithEvents.medium + dateWithEvents.low)}}</span>
+              </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </nz-calendar>
+  </div>

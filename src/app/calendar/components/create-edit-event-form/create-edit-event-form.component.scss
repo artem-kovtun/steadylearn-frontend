@@ -1,0 +1,34 @@
+[event-form-container] {
+    display: flex;
+    flex-direction: column;
+}
+
+[event-form-container] input {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+[actions] {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+[severity-select-container] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+[severity-select-container] span {
+    margin-right: 15px;
+}
+
+[severity-select-container] nz-select {
+    width: 100%;
+}
+
+[actions] button {
+    margin-left: 10px;
+}

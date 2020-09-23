@@ -1,0 +1,89 @@
+<div *ngIf="pageLoadProperties.isDataLoaded && pageLoadProperties.isAccessAllowed">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['Files']"
+  ></app-group-breadcrumb>
+  <div files-settings>
+    <div files-filters>
+      <nz-input-group nzSearch search [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input placeholder="Search..." [(ngModel)]="filters.search" (ngModelChange)="filtersChanged()" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </div>
+
+    <div flex actions>
+      <button flex-button (click)="deleteSelectedFiles()" *ngIf="this.selectedFiles.length > 0 && permissionsHelper.hasPermissions(this.permissions,[Permission.Admin, Permission.FilesManager])" nz-button nzType="default" nzDanger>
+        <i nz-icon nzType="delete" nzTheme="outline"></i>
+        <span>Delete</span>
+      </button>
+      <button flex-button (click)="downloadSelectedFiles()" *ngIf="this.selectedFiles.length > 0" nz-button nzType="default">
+        <i nz-icon nzType="download" nzTheme="outline"></i>
+        <span>Download</span>
+      </button>
+      <button (click)="onFiltersClick()" flex-button nz-button nzType="default">
+        <i nz-icon nzType="filter" nzTheme="outline"></i>
+        <span>Filters</span>
+      </button>
+      <button *ngIf="permissionsHelper.hasPermissions(this.permissions,[Permission.Admin, Permission.FilesManager])" flex-button (click)="filesSelector.click()" add-subject-button nz-button nzType="primary">
+        <i nz-icon nzType="upload" nzTheme="outline"></i>
+        <span>Upload</span>
+        <input #filesSelector class="filesSelector" multiple type="file" style="display:none" (change)="filesSelected($event.target.files)">
+      </button>
+    </div>
+
+    <nz-badge mobile-menu-button-badge [nzStyle]="{ backgroundColor: '#2776e6' }" *ngIf="this.selectedFiles.length > 0" nzDot>
+      <button (click)="openMobileMenu()"  mobile-menu-button nz-button nzType="default">
+        <i nz-icon nzType="menu" nzTheme="outline"></i>
+      </button>
+    </nz-badge>
+
+    <button (click)="openMobileMenu()" *ngIf="this.selectedFiles.length == 0" mobile-menu-button nz-button nzType="default">
+      <i nz-icon nzType="menu" nzTheme="outline"></i>
+    </button>
+  </div>
+  <nz-checkbox-wrapper
+    files-container
+    (nzOnChange)="select($event)"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false">
+    <ul nz-list [nzDataSource]="files" nzSize="large">
+      <li nz-list-item *ngFor="let uploadFile of uploadingFiles" nzNoFlex>
+        <nz-spin file-row nzSpinning [nzIndicator]="uploadingIndicatorTemplate">
+          <img no-select file-image [src]="this.stringTools.getIconUrlByFilename(uploadFile.name)" alt="">
+          <span file-name>{{ uploadFile.name }}</span>
+        </nz-spin>
+        <i (click)="cancelFileUpload(uploadFile)" remove-attachments nz-icon nzType="close" nzTheme="outline"></i>
+      </li>
+      <li nz-list-item *ngFor="let file of files" nzNoFlex>
+        <label file nz-checkbox [nzValue]="file.id">
+          <img no-select file-image [src]="this.stringTools.getIconUrlByFilename(file.name)" alt="">
+          <div file-name float-left-loading>
+            <nz-spin [nzSpinning]="file.isDownloading" [nzIndicator]="downloadingIndicatorTemplate">
+              <span>{{ file.name }}</span>
+            </nz-spin>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </nz-checkbox-wrapper>
+
+  <ng-template #downloadingIndicatorTemplate>
+    <i loading-overlay-icon nz-icon nzType="loading"></i>
+    <span>Downloading</span>
+  </ng-template>
+  <ng-template #uploadingIndicatorTemplate>
+    <i loading-overlay-icon nz-icon nzType="loading"></i>
+    <span>Uploading</span>
+  </ng-template>
+</div>
+
+<app-access-denied *ngIf="pageLoadProperties.isDataLoaded && !pageLoadProperties.isAccessAllowed"></app-access-denied>
+
+

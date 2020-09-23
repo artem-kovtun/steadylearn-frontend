@@ -1,0 +1,26 @@
+<div *ngIf="pageLoadProperties.isDataLoaded && pageLoadProperties.isAccessAllowed">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['Members']"
+  ></app-group-breadcrumb>
+
+  <app-members-header
+    (onAddMember)="addMembers()"
+    [permissions]="permissions"
+  ></app-members-header>
+
+  <app-members-list
+    [members]="members"
+    [permissions]="permissions"
+    members-list
+    (onMemberAccept)="acceptMember($event)"
+    (onMemberReject)="rejectMember($event)"
+    (onMemberRemove)="removeMember($event)"
+    (onMemberBan)="banMember($event)"
+    (onMemberPermissionsManage)="manageMemberPermissions($event)"
+  ></app-members-list>
+</div>
+
+<app-access-denied *ngIf="pageLoadProperties.isDataLoaded && !pageLoadProperties.isAccessAllowed"></app-access-denied>

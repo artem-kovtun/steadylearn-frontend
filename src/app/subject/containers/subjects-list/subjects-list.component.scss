@@ -1,0 +1,45 @@
+:host {
+    width: 100%;
+}
+
+[breadcrumb] {
+  display: none;
+  margin-bottom: 5px;
+}
+
+[nz-list] {
+    display: block;
+    border-top: 1px solid #f0f0f0;
+    height: calc(calc(var(--vh, 1vh)) - 136px);
+    overflow-y: scroll;
+}
+
+[nz-list-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5px;
+}
+
+app-subjects-list-record {
+  width: 100%;
+}
+
+app-subjects-filters {
+    display: block;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 950px) {
+  app-subjects-filters {
+    margin-bottom: 10px;
+  }
+
+  [breadcrumb] {
+    display: block;
+  }
+
+  [nz-list] {
+    height: calc(calc(var(--vh, 1vh)) - 163px);
+  }
+}

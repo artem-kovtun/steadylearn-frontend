@@ -1,0 +1,39 @@
+<div container *ngIf="pageLoadProperties.isDataLoaded && pageLoadProperties.isAccessAllowed">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['News']"
+  ></app-group-breadcrumb>
+
+  <div filters-container>
+    <app-news-filters
+      [senders]="senders"
+      [permissions]="permissions"
+      (onFiltersChange)="onFiltersChange($event)"
+      (onAddNews)="onAddNews()"
+    ></app-news-filters>
+  </div>
+
+  <div
+    #cardsContainer
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false"
+    cards-container>
+    <app-news-card
+      news-card
+      (onDelete)="deleteNews($event)"
+      (onEdit)="editNews($event)"
+      (onAttachmentDownload)="downloadFile($event)"
+      [permissions]="permissions"
+      *ngFor="let news of newsList"
+      [news]="news"
+    ></app-news-card>
+  </div>
+</div>
+
+<app-access-denied *ngIf="pageLoadProperties.isDataLoaded && !pageLoadProperties.isAccessAllowed"></app-access-denied>
+

@@ -1,0 +1,10 @@
+<div menu-actions>
+  <button *ngIf="permissionsHelper.hasPermissions(this.permissions,[Permission.Admin, Permission.NewsManager])" (click)="onAddScheduleButtonClick()" action-button flex-button nz-button nzType="primary">
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    <span>Add schedule</span>
+  </button>
+  <button (click)="onOpenFiltersButtonClick()" action-button flex-button nz-button nzType="default">
+    <i nz-icon nzType="filter" nzTheme="outline"></i>
+    <span>Filters</span>
+  </button>
+</div>

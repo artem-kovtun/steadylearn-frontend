@@ -1,0 +1,16 @@
+<span subject-file>
+    <div flex file>
+        <img file-icon [src]="this.stringTools.getIconUrlByFilename(file.name)">
+        <div file-name>
+            <nz-spin [nzSpinning]="file.isDownloading" [nzIndicator]="indicatorTemplate">
+              <div>{{ filenameWithoutExtension }}</div>
+            </nz-spin>
+        </div>
+    </div>
+    <i (click)="onDownloadClick()" nz-tooltip nzTooltipTitle="Download" download-file-icon nz-icon nzType="download" nzTheme="outline"></i>
+</span>
+
+<ng-template loading-overlay #indicatorTemplate>
+    <i loading-overlay-icon nz-icon nzType="loading"></i>
+    <span>Downloading</span>
+</ng-template>

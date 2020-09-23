@@ -1,0 +1,93 @@
+[member-title] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 15px;
+  color: #4f4f4f;
+}
+
+[member-title] span {
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[member-image] {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+[member-image-no-badge] {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+[member-image-badge] {
+  margin-right: 15px;
+}
+
+[actions] {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+[actions] button {
+  margin-left: 10px;
+}
+
+[members-container] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  height: 470px;
+  width: 100%;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-top: 20px;
+}
+
+[nz-list] {
+  height: 100%;
+  width: 100%;
+}
+
+[nz-list-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 5px;
+}
+
+[member-actions] {
+  display: flex;
+  align-items: center;
+}
+
+[member-actions] button {
+  margin-left: 10px;
+}
+
+[search-message-container] {
+  display: flex;
+  flex-direction: column;
+}
+
+[search-message-container] i {
+  color: #f0f0f0;
+  font-size: 150px;
+  margin-bottom: 25px;
+}
+
+[search-message-container] div {
+  text-align: center;
+  color: silver;
+}

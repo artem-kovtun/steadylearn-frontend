@@ -1,0 +1,135 @@
+nz-card {
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: justify;
+    height: fit-content;
+}
+
+[card-metadata] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+[options] {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+[options] i {
+    cursor: pointer;
+}
+
+[attachments-container] {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+[attachment] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 49%;
+    border-radius: 5px;
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+[file] {
+    width: 90%;
+    margin-right: 10px;
+}
+
+[file-image] {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+[file-name] {
+    width: 75%;
+}
+
+[file-name] div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+[attachment-content] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+[download-file-icon] {
+    cursor: pointer;
+    color: #858585;
+}
+
+[attachment] i:hover {
+    color: #2776e6;
+}
+
+[more-button] {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #f0f0f0;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+[more-button] a {
+    color: #4f4f4f;
+}
+
+[loading-overlay-icon] {
+    margin-right: 10px;
+}
+
+[delete-menu-item] {
+  color: red;
+}
+
+[delete-menu-item]:hover {
+  color: #db0000;
+}
+
+@media screen and (max-width: 950px) {
+
+  nz-card {
+    line-height: 20px;
+    font-size: 13px;
+  }
+
+  [card-metadata] {
+    font-size: 10px;
+    color: #c0c0c0;
+  }
+
+  [attachment] {
+    width: 100%;
+  }
+
+  [more-button] {
+    margin: 0;
+    padding: 10px 0 0 0;
+  }
+
+  [more-button] a {
+    font-size: 13px;
+  }
+
+  [more-button] a i {
+    font-size: 12px;
+  }
+
+}

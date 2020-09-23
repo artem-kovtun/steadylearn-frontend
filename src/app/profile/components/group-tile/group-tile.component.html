@@ -1,0 +1,23 @@
+<div group-tile>
+  <div group-tile-content>
+
+    <img *ngIf="group.imageUrl != null; else groupImagePreview" group-icon [src]="group.imageUrl">
+
+    <ng-template #groupImagePreview>
+      <nz-avatar group-icon-preview [nzSize]="80" no-select [nzText]="group.alias"></nz-avatar>
+    </ng-template>
+
+    <span group-title>{{group.name}}</span>
+    <span group-alias>{{group.alias}}</span>
+    <div group-actions>
+      <a nzSize="large" nz-button nzType="link" nzDanger>
+        <i nz-icon nzType="poweroff" nzTheme="outline"></i>
+        <span>Leave</span>
+      </a>
+      <button flex-button [routerLink]="['/', group.alias, 'home']" nz-button nzType="default">
+        <span>Enter</span>
+        <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
+</div>

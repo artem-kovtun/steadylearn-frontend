@@ -1,0 +1,93 @@
+<div schedule>
+  <div schedule-header>
+    <span schedule-title no-select>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ schedule.name }}</span>
+        <input schedule-name-input placeholder="Schedule name..." *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="schedule.name"/>
+    </span>
+    <div schedule-actions *ngIf="scheduleMode == ScheduleMode.ReadOnly && !schedule.isCollapsed; else editModeActions">
+      <button (click)="onToggleScheduleStatusClick()" *ngIf="!schedule.isActive" nz-button nzType="default"><i nz-icon nzType="check-circle" nzTheme="outline"></i>Make active</button>
+      <button (click)="onToggleScheduleStatusClick()" *ngIf="schedule.isActive"  nz-button nzType="default"><i nz-icon nzType="stop" nzTheme="outline"></i>Make inactive</button>
+      <button (click)="onDeleteClick()" nz-button nzType="default" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i>Delete</button>
+      <button (click)="onEditClick()" nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i>Edit</button>
+    </div>
+    <ng-template #editModeActions>
+      <div *ngIf="!schedule.isCollapsed" schedule-actions>
+        <button (click)="onEditConfirmClick()" nz-button nzType="primary"><i nz-icon nzType="check" nzTheme="outline"></i>Save</button>
+        <button (click)="onEditCancelClick()" nz-button nzType="primary" nzDanger><i nz-icon nzType="close" nzTheme="outline"></i>Cancel</button>
+        <button (click)="onAddRowClick()"  nz-button nzType="default"><i nz-icon nzType="plus-circle" nzTheme="outline"></i>Add row</button>
+      </div>
+    </ng-template>
+  </div>
+  <nz-table *ngIf="!schedule.isCollapsed" [nzData]="schedule.subjects" [nzShowPagination]="false">
+    <thead>
+    <tr>
+      <th time-column>Time</th>
+      <th day-column>Monday</th>
+      <th day-column>Tuesday</th>
+      <th day-column>Wednesday</th>
+      <th day-column>Thursday</th>
+      <th day-column>Friday</th>
+      <th day-column>Saturday</th>
+      <th *ngIf="scheduleMode == ScheduleMode.Edit" day-column></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of schedule.subjects; index as i;">
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.time }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.time"/>
+      </td>
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.monday }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.monday"/>
+      </td>
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.tuesday }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.tuesday"/>
+      </td>
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.wednesday }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.wednesday"/>
+      </td>
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.thursday }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.thursday"/>
+      </td>
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.friday }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.friday"/>
+      </td>
+      <td>
+        <span *ngIf="scheduleMode == ScheduleMode.ReadOnly">{{ row.saturday }}</span>
+        <input *ngIf="scheduleMode == ScheduleMode.Edit" nz-input [(ngModel)]="row.saturday"/>
+      </td>
+      <td *ngIf="scheduleMode == ScheduleMode.Edit">
+        <button (click)="onRemoveRowClick(i)" nz-button nzType="default"><i nz-icon nzType="delete" nzTheme="outline"></i>Remove</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<div mobile-schedule>
+  <div mobile-header>
+    <span name>{{schedule.name}}</span>
+    <i more-action-icon nz-icon nzType="ellipsis" nzTheme="outline"></i>
+  </div>
+  <nz-carousel>
+    <div nz-carousel-content *ngFor="let day of weekDays">
+      <div schedule-day>
+        <span day-name>{{day.display}}</span>
+        <ul mobile-schedule-list nz-list [nzDataSource]="schedule.subjects"  nzSize="large">
+          <li mobile-schedule-row nz-list-item *ngFor="let row of schedule.subjects;" nzNoFlex>
+            <div time>{{row.time}}</div>
+            <div subject>{{row[day.property]}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nz-carousel>
+</div>
+
+
+

@@ -1,0 +1,28 @@
+<div *ngIf="pageLoadProperties.isDataLoaded && pageLoadProperties.isAccessAllowed">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['Subjects']"
+  ></app-group-breadcrumb>
+
+  <app-subjects-filters
+    [filters]="subjectsFilters"
+    (onAddNewSubject)="onAddNewSubject()"
+    (onFiltersChange)="onFiltersChange($event)"
+    [permissions]="permissions"
+  ></app-subjects-filters>
+
+  <ul nz-list [nzDataSource]="subjectsList.subjects" nzSize="large">
+    <li nz-list-item *ngFor="let subject of subjectsList.subjects" nzNoFlex>
+      <app-subjects-list-record
+        [subject]="subject"
+        (onClick)="navigateToSubject($event)"
+        (onDelete)="deleteSubject($event)"
+        (onEdit)="editSubject($event)"
+      ></app-subjects-list-record>
+    </li>
+  </ul>
+</div>
+
+<app-access-denied *ngIf="pageLoadProperties.isDataLoaded && !pageLoadProperties.isAccessAllowed"></app-access-denied>

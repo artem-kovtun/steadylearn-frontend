@@ -1,0 +1,41 @@
+:host {
+    width: 100%;
+}
+
+[schedule] {
+    display: block;
+    margin-bottom: 50px;
+}
+
+[schedule]:last-child {
+  margin-bottom: 20px;
+}
+
+[breadcrumb] {
+  display: none;
+  margin-bottom: 5px;
+}
+
+[schedules-container] {
+  margin-top: 20px;
+  padding-top: 20px;
+  max-height: calc(calc(var(--vh, 1vh)) - 136px);
+  overflow-y: auto;
+  border-top: 1px solid #f0f0f0;
+}
+
+
+@media screen and (max-width: 950px) {
+  [breadcrumb] {
+    display: block;
+  }
+
+  [schedules-container] {
+    margin-top: 10px;
+    max-height: calc(calc(var(--vh, 1vh)) - 148px);
+  }
+
+  [schedules-container]::-webkit-scrollbar {
+    display: none;
+  }
+}

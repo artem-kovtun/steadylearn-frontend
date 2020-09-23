@@ -1,0 +1,32 @@
+<div *ngIf="pageLoadProperties.isDataLoaded && pageLoadProperties.isAccessAllowed">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['Schedule']"
+  ></app-group-breadcrumb>
+
+  <app-schedules-filters
+    (onFiltersChange)="onFiltersChange($event)"
+    (onAddNewSchedule)="onAddNewSchedule()"
+    (onCollapseAll)="onCollapseAll()"
+    [permissions]="permissions"
+  >
+  </app-schedules-filters>
+
+  <div schedules-container *ngIf="schedulesList !== null">
+    <app-schedule schedule
+                  *ngFor="let schedule of schedulesList.schedules"
+                  [schedule]="schedule"
+                  [scheduleMode]="schedule.isNewlyCreated ? 2 : 1"
+                  (onScheduleDelete)="onScheduleDelete($event)"
+                  (onScheduleEditConfirm)="onScheduleEditConfirm($event)"
+                  (onScheduleEditCancel)="onScheduleEditCancel()"
+                  (onToggleScheduleStatus)="onToggleScheduleStatus($event)"
+    >
+    </app-schedule>
+  </div>
+</div>
+<app-access-denied *ngIf="pageLoadProperties.isDataLoaded && !pageLoadProperties.isAccessAllowed"></app-access-denied>
+
+

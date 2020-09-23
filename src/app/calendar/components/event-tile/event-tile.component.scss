@@ -1,0 +1,54 @@
+[event] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 6px 5px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+[event-message] {
+    margin-left: 7px;
+}
+
+.low {
+    color: #4f4f4f;
+    border: 1px solid #e3e3e3;
+    background-color: #fdfdfd;
+}
+
+.medium {
+    color: #2776e6;
+    border: 1px solid #2776e6;
+    background-color: #eff6ff;
+}
+
+.high {
+    color: #f75c5c;
+    border: 1px solid #f75c5c;
+    background-color: #fff0f0;
+}
+
+[event-actions] {
+    margin-left: 15px;
+    display: flex;
+}
+
+[open-tile-actions-button] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+[action-button] {
+    width: 100px;
+}
+
+[delete-menu-item] {
+  color: red;
+}
+
+[delete-menu-item]:hover {
+  color: #db0000;
+}
+

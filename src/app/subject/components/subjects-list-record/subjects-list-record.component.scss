@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[subject-title] {
+  font-size: 15px;
+  color: #4f4f4f;
+}
+
+[subject-title]:hover {
+  color: #2776e6;
+}
+
+[more-action-icon] {
+  cursor: pointer;
+}
+
+.delete-menu-button {
+  color: red;
+}

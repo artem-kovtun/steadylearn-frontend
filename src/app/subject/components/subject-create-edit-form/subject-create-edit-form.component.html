@@ -1,0 +1,30 @@
+<form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label input-label nzRequired>Name</nz-form-label>
+      <nz-form-control nzErrorTip="Subject name is required">
+        <input nz-input formControlName="name" placeholder="Name..." />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label input-label>Description</nz-form-label>
+      <nz-form-control>
+        <textarea
+            nz-input 
+            formControlName="description"
+            placeholder="Description..."
+            [nzAutosize]="{ minRows: 6, maxRows: 6 }"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <div actions>
+        <button *ngIf="subject.id == null" nz-button flex-button nzType="primary">
+          <i nz-icon nzType="plus" nzTheme="outline"></i>
+          <span>Create</span>
+        </button>
+
+        <button *ngIf="subject.id != null" nz-button flex-button nzType="primary">
+          <i nz-icon nzType="check" nzTheme="outline"></i>
+          <span>Update</span>
+        </button>
+    </div>
+</form>

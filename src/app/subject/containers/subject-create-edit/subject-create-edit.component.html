@@ -1,0 +1,24 @@
+<div *ngIf="pageLoadProperties.isDataLoaded && pageLoadProperties.isAccessAllowed">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['Subjects', subjectId == null ? 'Create' : 'Update']"
+  ></app-group-breadcrumb>
+
+  <div header>
+    <button (click)="onBackClick()" nz-button flex-button nzType="default">
+      <i nz-icon nzType="arrow-left" nzTheme="outline"></i>
+      <span>Back</span>
+    </button>
+  </div>
+
+  <app-subject-create-edit-form
+    *ngIf="subject != null"
+    [subject]="subject"
+    (onSubjectCreateEdit)="createEditSubject($event)"
+  ></app-subject-create-edit-form>
+</div>
+
+<app-access-denied *ngIf="pageLoadProperties.isDataLoaded && !pageLoadProperties.isAccessAllowed"></app-access-denied>
+

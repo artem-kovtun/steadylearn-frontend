@@ -1,0 +1,70 @@
+[container] {
+    display: flex;
+}
+
+[container] nz-date-picker {
+    margin: 0 10px;
+    width: 100%;
+}
+
+[container] button {
+    display: flex;
+    height: 40px;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+[container] button i {
+    margin-top: 5px;
+}
+
+[date] {
+  padding: 0 3px;
+}
+
+.red-border {
+  border: 1px solid red;
+  border-radius: 50%;
+}
+
+.blue-border {
+  border: 1px solid blue;
+  border-radius: 50%;
+}
+
+.silver-border {
+  border: 1px solid silver;
+  border-radius: 50%;
+}
+
+[date-container] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px
+}
+
+[dot] {
+  border-radius: 50%;
+  width: 3px;
+  height: 3px;
+  margin: 1px 0;
+}
+
+[event-metadata] {
+  display: flex;
+  flex-direction: column;
+}
+
+[high-severity] {
+  background-color: red;
+}
+
+[medium-severity] {
+  background-color: blue;
+}
+
+[low-severity] {
+  background-color: silver;
+}

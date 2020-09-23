@@ -1,0 +1,26 @@
+<div settings>
+
+    <div flex filters>
+      <nz-input-group nzSearch search [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input placeholder="Search..." [(ngModel)]="filters.search" (ngModelChange)="filtersChanged()" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </div>
+
+    <div flex actions>
+      <button (click)="onFilterButtonClick()" flex-button filters-button nz-button nzType="default">
+        <i nz-icon nzType="filter" nzTheme="outline"></i>
+        <span>Filters</span>
+      </button>
+      <button *ngIf="permissionsHelper.hasPermissions(this.permissions,[permission.Admin, permission.NewsManager])"  (click)="onAddNewsButtonClick()" flex-button add-news-button nz-button nzType="primary">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+        <span>Add news</span>
+      </button>
+    </div>
+
+    <button (click)="openMobileMenu()" mobile-menu-button nz-button nzType="default">
+      <i nz-icon nzType="menu" nzTheme="outline"></i>
+    </button>
+</div>

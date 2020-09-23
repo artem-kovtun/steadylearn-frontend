@@ -1,0 +1,61 @@
+<div container *ngIf="isAccessAllowed && isDataLoaded">
+  <app-group-breadcrumb
+    breadcrumb
+    *ngIf="group != null"
+    [group]="group"
+    [items]="['Home']"
+  ></app-group-breadcrumb>
+
+  <div clock-container>
+    <i clock-icon nz-icon nzType="clock-circle" nzTheme="outline"></i>
+    <app-clock clock></app-clock>
+  </div>
+
+  <div today>
+    <app-section todays-events title="Today">
+      <div events-list>
+        <app-event-tile *ngFor="let event of events" [event]="event"></app-event-tile>
+      </div>
+    </app-section>
+  </div>
+
+  <div *ngIf="upcomingEvents.length > 0">
+    <app-section  upcoming-events title="Upcoming events">
+      <div upcoming-day-events *ngFor="let dayEvents of upcomingEvents">
+        <app-labeled-field [label]="dayEvents.date | date: 'fullDate'">
+          <app-event-tile *ngFor="let event of dayEvents.events" [event]="event"></app-event-tile>
+        </app-labeled-field>
+      </div>
+    </app-section>
+    <div more-link-container>
+      <a [routerLink]="['/', groupAlias, 'calendar']" more-link nz-button nzType="link">
+        <span>More events</span>
+        <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+      </a>
+    </div>
+  </div>
+
+
+  <div *ngIf="newsList.length > 0">
+    <app-section  latest-news title="Latest news">
+      <div news-list>
+        <app-news-card
+          news-card
+          *ngFor="let news of newsList"
+          [news]="news"
+        ></app-news-card>
+      </div>
+    </app-section>
+    <div more-link-container>
+      <a [routerLink]="['/', groupAlias, 'news']" more-link nz-button nzType="link">
+        <span>More news</span>
+        <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+<app-access-denied *ngIf="!isAccessAllowed && isDataLoaded"></app-access-denied>
+
+

@@ -1,0 +1,25 @@
+<div subjects-settings>
+    <div subjects-filters>
+      <nz-input-group search nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input  nz-input placeholder="Search..." [(ngModel)]="filters.search" (ngModelChange)="filtersChanged()"/>
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button search-field-icon nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </div>
+
+    <div actions>
+      <button (click)="onFilterButtonClick()" flex-button filters-button nz-button nzType="default">
+        <i nz-icon nzType="filter" nzTheme="outline"></i>
+        <span>Filters</span>
+      </button>
+      <button *ngIf="permissionsHelper.hasPermissions(this.permissions,[permission.Admin, permission.SubjectsManager])" (click)="onAddNewSubjectClick()" flex-button add-subject-button nz-button nzType="primary">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+        <span>Add subject</span>
+      </button>
+    </div>
+
+    <button (click)="openMobileMenu()" mobile-menu-button nz-button nzType="default">
+      <i nz-icon nzType="menu" nzTheme="outline"></i>
+    </button>
+</div>

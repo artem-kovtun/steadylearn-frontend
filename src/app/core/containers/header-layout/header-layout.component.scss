@@ -1,0 +1,27 @@
+[wrapper] {
+  min-height: calc(var(--vh, 1vh));
+}
+
+nz-layout {
+  background: #fff;
+}
+
+app-header {
+  z-index: 2;
+}
+
+[main-content] {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0 20px;
+  height: 100%;
+}
+
+
+@media screen and (max-width: 950px) {
+
+  [main-content] {
+    padding: 15px 10px 0 10px;
+    height: 100%;
+  }
+}

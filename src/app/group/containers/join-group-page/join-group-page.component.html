@@ -1,0 +1,90 @@
+<div wrapper>
+  <div container>
+    <div header>
+      <div flex>
+        <button routerLink="" back-button nz-button flex-button nzType="default">
+          <i nz-icon nzType="arrow-left" nzTheme="outline"></i>
+          <span>Back</span>
+        </button>
+      </div>
+      <span join-group-label>Join group</span>
+    </div>
+
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input search nz-input placeholder="Search..." [(ngModel)]="filters.search" (ngModelChange)="getGroups()"/>
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button search-field-icon nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+    </ng-template>
+
+    <ul *ngIf="groups.length !== 0" nz-list [nzDataSource]="groups" nzSize="large">
+      <li nz-list-item *ngFor="let group of groups" nzNoFlex>
+        <div nz-list-item-title>
+
+          <img *ngIf="group.imageUrl != null && group.status == 2" [src]="group.imageUrl"  image-no-badge alt="">
+          <nz-avatar *ngIf="group.imageUrl == null && group.status == 2" [nzText]="group.alias" style="color:#2776e6; background-color:#f0f9ff;" [nzSize]="35" image-no-badge></nz-avatar>
+
+          <nz-badge image-badge *ngIf="group.imageUrl != null && group.status == 1" [nzCount]="activeLabel">
+            <img [src]="group.imageUrl"  alt="">
+          </nz-badge>
+          <nz-badge image-badge *ngIf="group.imageUrl == null && group.status == 1" [nzCount]="activeLabel">
+            <nz-avatar [nzText]="group.alias" style="color:#2776e6; background-color:#f0f9ff;" [nzSize]="35"></nz-avatar>
+          </nz-badge>
+
+          <nz-badge image-badge *ngIf="group.imageUrl != null && group.status == 3" [nzCount]="pendingLabel">
+            <img  [src]="group.imageUrl" alt="">
+          </nz-badge>
+          <nz-badge image-badge *ngIf="group.imageUrl == null && group.status == 3" [nzCount]="pendingLabel">
+            <nz-avatar [nzText]="group.alias" style="color:#2776e6; background-color:#f0f9ff;" [nzSize]="35"></nz-avatar>
+          </nz-badge>
+
+          <nz-badge image-badge *ngIf="group.imageUrl != null && group.status == 4" [nzCount]="bannedLabel">
+            <img [src]="group.imageUrl" alt="">
+          </nz-badge>
+          <nz-badge image-badge *ngIf="group.imageUrl == null && group.status == 4" [nzCount]="bannedLabel">
+            <nz-avatar [nzText]="group.alias" style="color:#2776e6; background-color:#f0f9ff;" [nzSize]="35"></nz-avatar>
+          </nz-badge>
+
+          <div>
+            <span>{{ group.name }}</span>
+            <nz-tag status-tag *ngIf="group.status == 1" nzColor="green">Already a member</nz-tag>
+            <nz-tag status-tag *ngIf="group.status == 4" nzColor="red">Banned</nz-tag>
+            <nz-tag status-tag *ngIf="group.status == 3" nzColor="orange">Join request pending</nz-tag>
+          </div>
+
+        </div>
+        <div actions>
+          <button *ngIf="group.status == 3" flex-button nz-button nzType="default" nzDanger>
+            <i nz-icon nzType="login" nzTheme="outline"></i>
+            <span>Cancel request</span>
+          </button>
+          <button (click)="joinGroup(group.alias)" *ngIf="group.status == 2 && !group.isPublic" flex-button nz-button nzType="default">
+            <i nz-icon nzType="login" nzTheme="outline"></i>
+            <span>Send join request</span>
+          </button>
+          <button (click)="joinGroup(group.alias)" *ngIf="group.status == 2 && group.isPublic" flex-button nz-button nzType="default">
+            <i nz-icon nzType="login" nzTheme="outline"></i>
+            <span>Join</span>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div *ngIf="groups.length === 0" search-message-container>
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+      <div no-select>Input at least <b>3 symbols</b> for find a group</div>
+    </div>
+
+  </div>
+</div>
+
+
+<ng-template #activeLabel>
+  <i nz-icon nzType="check-circle" nzTheme="fill" class="ant-scroll-number-custom-component" style="color: green"></i>
+</ng-template>
+<ng-template #bannedLabel>
+  <i nz-icon nzType="close-circle" nzTheme="fill" class="ant-scroll-number-custom-component" style="color: red"></i>
+</ng-template>
+<ng-template #pendingLabel>
+  <i nz-icon nzType="question-circle" nzTheme="fill" class="ant-scroll-number-custom-component" style="color: orange"></i>
+</ng-template>

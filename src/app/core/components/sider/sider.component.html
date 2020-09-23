@@ -1,0 +1,70 @@
+<nz-sider [(nzCollapsed)]="!isVisible" [nzCollapsedWidth]="0" [nzTrigger]="null" nzTheme="light">
+    <ul nz-menu nzMode="inline">
+      <li nz-menu-item [nzSelected]="isActive(group.alias + '/home')">
+        <a [routerLink]="['/', group.alias, 'home']">
+          <img menu-item-icon src="../assets/images/home.svg">
+          <span menu-item-label>Home</span>
+        </a>
+      </li>
+      <li nz-menu-item [nzSelected]="isActive(group.alias + '/news')">
+        <a [routerLink]="['/', group.alias, 'news']">
+          <img menu-item-icon src="../assets/images/envelope.svg">
+          <span menu-item-label>News</span>
+        </a>
+      </li>
+      <li nz-menu-item [nzSelected]="isActive(group.alias + '/schedule')">
+        <a [routerLink]="['/', group.alias, 'schedule']">
+          <img menu-item-icon src="../assets/images/clock.svg">
+          <span menu-item-label>Schedule</span>
+        </a>
+      </li>
+      <li nz-menu-item [nzSelected]="isActive(group.alias + '/calendar')">
+        <a [routerLink]="['/', group.alias, 'calendar']">
+          <img menu-item-icon src="../assets/images/calendar.svg">
+          <span menu-item-label>Calendar</span>
+        </a>
+      </li>
+      <li nz-menu-item [nzSelected]="isActive(group.alias + '/subjects')">
+        <a [routerLink]="['/', group.alias, 'subjects']">
+          <img menu-item-icon src="../assets/images/study.svg">
+          <span menu-item-label>Subjects</span>
+        </a>
+      </li>
+      <li nz-submenu [nzTitle]="peopleMenuTemplate" [nzOpen]="isActive(group.alias + '/members') || isActive(group.alias + '/associated-people')">
+        <ul>
+          <li nz-menu-item [nzSelected]="isActive(group.alias + '/members')">
+            <a [routerLink]="['/', group.alias, 'members']">
+              <img menu-item-icon src="../assets/images/members.svg">
+              <span menu-item-label>Members</span>
+            </a>
+          </li>
+          <li nz-menu-item [nzSelected]="isActive(group.alias + '/associated-people')">
+            <a [routerLink]="['/', group.alias, 'associated-people']">
+              <img menu-item-icon src="../assets/images/associated.svg">
+              <span menu-item-label>Associated</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <ng-template #peopleMenuTemplate>
+        <img menu-item-icon src="../assets/images/people.png">
+        <span menu-item-label>People</span>
+      </ng-template>
+      <li nz-menu-item [nzSelected]="isActive(group.alias + '/files')">
+        <a [routerLink]="['/', group.alias, 'files']">
+          <img menu-item-icon src="../assets/images/files/file.svg">
+          <span menu-item-label>Files</span>
+        </a>
+      </li>
+      <li *ngIf="permissionsHelper.hasPermissions(this.permissions,[Permission.Admin])" nz-menu-item [nzSelected]="isActive(group.alias + '/settings')">
+        <a [routerLink]="['/', group.alias, 'settings']">
+          <img menu-item-icon src="../assets/images/settings.svg">
+          <span menu-item-label>Settings</span>
+        </a>
+      </li>
+    </ul>
+    <div routerLink="" back-button>
+      <i back-icon nz-icon nzType="arrow-left" nzTheme="outline"></i>
+      <span back-label>Back to groups</span>
+    </div>
+</nz-sider>

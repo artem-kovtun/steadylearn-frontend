@@ -1,0 +1,8 @@
+<div container>
+    <img *ngIf="person.imageUrl != null" [src]="person.imageUrl" alt="" person-image>
+    <nz-avatar *ngIf="person.imageUrl == null" [nzText]="abbreviation" style="color:#2776e6; background-color:#f0f9ff;" [nzSize]="40" person-image></nz-avatar>
+    <span
+      [routerLink]="['/', groupAlias, 'associated-people', person.id]"
+      [queryParams]="{returnUrl: router.url}"
+    >{{ person.fullname }}</span>
+</div>

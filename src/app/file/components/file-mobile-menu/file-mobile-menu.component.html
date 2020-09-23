@@ -1,0 +1,20 @@
+<div menu-actions>
+  <div menu-actions selected-files-actions *ngIf="this.model.isFilesSelected">
+    <button (click)="onDownloadSelectedButtonClick()" action-button flex-button nz-button nzType="primary">
+      <i nz-icon nzType="download" nzTheme="outline"></i>
+      <span>Download selected</span>
+    </button>
+    <button (click)="onDeleteSelectedButtonClick()" action-button flex-button nz-button nzType="default" nzDanger>
+      <i nz-icon nzType="delete" nzTheme="outline"></i>
+      <span>Delete selected</span>
+    </button>
+  </div>
+  <button *ngIf="permissionsHelper.hasPermissions(this.model.permissions,[Permission.Admin, Permission.FilesManager])" (click)="onUploadFilesButtonClick()" action-button flex-button nz-button nzType="primary">
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    <span>Upload</span>
+  </button>
+  <button (click)="onOpenFiltersButtonClick()" action-button flex-button nz-button nzType="default">
+    <i nz-icon nzType="filter" nzTheme="outline"></i>
+    <span>Filters</span>
+  </button>
+</div>

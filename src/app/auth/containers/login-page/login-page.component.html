@@ -1,0 +1,50 @@
+<div container>
+  <img class="logo" src="../../../../assets/images/logo.png" alt="STEADYLEARN">
+  <form nz-form [formGroup]="loginForm" login-form>
+    <nz-form-item>
+      <nz-form-control [nzValidateStatus]="isLoginFailed || isNotFilledValues ? 'error' : null">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="username" placeholder="Username" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzValidateStatus]="isLoginFailed || isNotFilledValues ? 'error' : null">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row options>
+      <div nz-col [nzSpan]="12">
+        <label nz-checkbox formControlName="remember">
+          <span>Remember me</span>
+        </label>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <a login-form-forgot>Forgot password</a>
+      </div>
+    </div>
+    <button (click)="submitForm()" nz-button login-form-button nzType="primary">Log in</button>
+    <div class="third-party-login-container">
+      <button (click)="loginExternal('Google')" class="third-party-login-button" nz-button nzType="default">
+        <img class="third-party-login-icon" src="../../../../assets/images/google.svg" alt="">
+      </button>
+      <button (click)="loginExternal('Facebook')" class="third-party-login-button" nz-button nzType="default">
+        <img class="third-party-login-icon" src="../../../../assets/images/facebook.svg" alt="">
+      </button>
+      <button class="third-party-login-button" nz-button nzType="default">
+        <img class="third-party-login-icon" src="../../../../assets/images/twitter.svg" alt="">
+      </button>
+    </div>
+    <nz-divider nzText="or"></nz-divider>
+    <button [routerLink]="['/','signup']" nz-button login-form-button nzType="default">Sign up</button>
+
+
+    <div login-error >
+      <span *ngIf="isLoginFailed">Invalid username or password</span>
+      <span *ngIf="isNotFilledValues">Username and password are required</span>
+    </div>
+  </form>
+</div>
+

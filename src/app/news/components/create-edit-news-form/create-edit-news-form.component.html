@@ -1,0 +1,57 @@
+<form nz-form nzLayout="vertical" [formGroup]="form">
+    <nz-form-item>
+      <nz-form-label input-label>Message</nz-form-label>
+      <nz-form-control nzErrorTip="News message is required">
+        <textarea
+            nz-input
+            formControlName="message"
+            placeholder="Content..."
+            [nzAutosize]="{ minRows: 7, maxRows: 7 }"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="files">Attachments</nz-form-label>
+      <nz-form-control>
+        <ngx-file-drop
+          dropZoneLabel="Drop files here"
+          (onFileDrop)="dropped($event)">
+          <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+            <img dd-box src="../../../../assets/images/paper-clip.svg">
+            <span dd-label>Drag and drop files you want to attach</span>
+            <button nz-button browse-files-button (click)="openFileSelector()">Browse Files</button>
+          </ng-template>
+        </ngx-file-drop>
+      </nz-form-control>
+
+      <ul nz-list nzSize="large">
+        <li nz-list-item *ngFor="let attachment of attachments; index as i;" nzNoFlex>
+          <nz-spin attachment-row flex [nzSpinning]="attachment.id == null" [nzIndicator]="indicatorTemplate">
+            <img [src]="this.stringTools.getIconUrlByFilename(attachment.name)" alt="">
+            <span>{{ attachment.name }}</span>
+          </nz-spin>
+          <i remove-attachments (click)="removeAttachment(attachment)" nz-icon nzType="close" nzTheme="outline"></i>
+        </li>
+      </ul>
+    </nz-form-item>
+
+
+
+    <ng-template #indicatorTemplate>
+      <i loading-overlay-icon nz-icon nzType="loading"></i>
+      <span>Uploading</span>
+    </ng-template>
+
+    <div actions>
+        <button (click)="submitForm()" *ngIf="news.id == null" nz-button flex-button nzType="primary">
+          <i nz-icon nzType="plus" nzTheme="outline"></i>
+          <span>Create</span>
+        </button>
+
+        <button (click)="submitForm()" *ngIf="news.id != null" nz-button flex-button nzType="primary">
+          <i nz-icon nzType="check" nzTheme="outline"></i>
+          <span>Update</span>
+        </button>
+    </div>
+</form>
